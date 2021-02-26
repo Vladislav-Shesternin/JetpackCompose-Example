@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.jetpackcompose_example.ui.theme.JetpackComposeExampleTheme
 
@@ -14,25 +14,24 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            JetpackComposeExampleTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
-            }
+
         }
     }
 }
 
+@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun ShowPreview() {
+    Greeting(name = "Android")
 }
 
-@Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun Greeting(name: String) {
     JetpackComposeExampleTheme {
-        Greeting("Android")
+        Text(
+            color = Color.Blue,
+            text = "Hello $name!",
+            style = MaterialTheme.typography.body1,
+        )
     }
 }
