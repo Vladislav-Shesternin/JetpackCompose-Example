@@ -37,7 +37,8 @@ fun Show() {
 
 @Composable
 fun Switch() {
-    var isGrayScale = false
+    var isOn by remember { mutableStateOf(false) }
+    var isGrayScale by remember { mutableStateOf(false) }
     val colorChoice by remember(isGrayScale) {
         mutableStateOf(
             if (isGrayScale) {
@@ -53,7 +54,6 @@ fun Switch() {
             }
         )
     }
-    var isOn by remember { mutableStateOf(false) }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -63,7 +63,7 @@ fun Switch() {
             modifier = Modifier
                 .padding(60.dp)
                 .fillMaxSize(),
-            onClick = { isOn = !isOn }
+            onClick = { colorChoice.toggle() }
         ) {
             Text(
                 text = if (isOn) "On" else "Off",
@@ -72,12 +72,12 @@ fun Switch() {
             )
         }
     }
-    Switch(
+    androidx.compose.material.Switch(
         modifier = Modifier
             .padding(60.dp)
             .fillMaxWidth(),
         checked = isGrayScale,
-        onCheckedChange = {isGrayScale = !isGrayScale}
+        onCheckedChange = { isGrayScale = !isGrayScale }
     )
 }
 
