@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">JetpackCompose-Example</string>
+
+    <string name="cd_anchor">Anchor</string>
+    <string name="cd_android_babe">Android-Babe</string>
+    <string name="cd_bas">Bas</string>
+    <string name="cd_snow">Snow</string>
+    <string name="cd_tractor">Tractor</string>
+
+    <string name="task_1">It must be thrown off when the ship stops</string>
+    <string name="task_2">Goes in winter</string>
+    <string name="task_3">You can dig a vegetable garden</string>
+    <string name="task_4">They ride it to school</string>
+    <string name="task_5">White and very cold</string>
+    <string name="task_6">This is a little green cub</string>
+    <string name="task_7">He never liked apples</string>
+    <string name="task_8">It has a lot of smoke but it is powerful</string>
 </resources>
