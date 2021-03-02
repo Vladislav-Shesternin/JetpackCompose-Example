@@ -3,8 +3,9 @@ package com.example.jetpackcompose_example.example
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.Composable
 
-private const val TAG = "VVV"
+private const val TAG = "VLAD"
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,10 +19,15 @@ class MainActivity : AppCompatActivity() {
         instance = this
 
         setContent {
-            ExampleScreen(
-                items = listOf(),
-                onAddItem = { },
-                onRemoveItem = { })
+            ExampleActivityScreen()
         }
     }
+}
+
+@Composable
+fun ExampleActivityScreen() {
+    ExampleScreen(
+        items = listOf( ),
+        onAddItem = { },
+        onRemoveItem = { })
 }
