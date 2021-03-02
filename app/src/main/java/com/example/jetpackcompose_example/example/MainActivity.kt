@@ -3,23 +3,25 @@ package com.example.jetpackcompose_example.example
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 
 private const val TAG = "VVV"
+
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        lateinit var instance: AppCompatActivity
+            private set
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
+        instance = this
 
+        setContent {
+            ExampleScreen(
+                items = listOf(),
+                onAddItem = { },
+                onRemoveItem = { })
         }
     }
-}
-
-
-@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
-@Composable
-fun Show() {
-
 }
