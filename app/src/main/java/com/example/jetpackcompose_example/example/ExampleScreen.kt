@@ -1,6 +1,5 @@
 package com.example.jetpackcompose_example.example
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -59,12 +58,11 @@ fun ExampleScreen(
             }
         }
         Button(
-            onClick = { onAddItem(generatorRandomExampleItem())},
+            onClick = { onAddItem(generatorRandomExampleItem()) },
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth()
         ) {
-
             Text(text = "Add random item")
         }
     }
@@ -93,11 +91,11 @@ fun ExampleScreenPreview() {
         ExampleItem(stringResource(id = R.string.task_8)),
     )
 
-//    ExampleScreen(
-//        items = items,
-//        onAddItem = { },
-//        onRemoveItem = { }
-//    )
+    ExampleScreen(
+        items = items,
+        onAddItem = { },
+        onRemoveItem = { }
+    )
 }
 
 
