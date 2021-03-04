@@ -8,6 +8,9 @@ import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -19,10 +22,41 @@ import com.example.jetpackcompose_example.util.generatorRandomExampleItem
 private const val TAG = "VLAD"
 
 @Composable
+fun ExampleItemInput(
+    onItemComplete: (ExampleItem) -> Unit,
+) {
+    Column {
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .padding(top = 16.dp)
+        ) {
+            val text = remember { mutableStateOf("") }
+            ExampleInputTextField(
+                text = text.value,
+                onTextChange = { text.value = it },
+                modifier = Modifier
+                    .weight(1F)
+                    .padding(end = 8.dp)
+            )
+            ExampleInputButton(
+                text = "Add",
+                onClick = {
+                    onItemComplete(ExampleItem(text.value))
+                    text.value = ""
+                },
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
+            )
+        }
+    }
+}
+
+@Composable
 fun ExampleRow(
     item: ExampleItem,
     onItemClicked: (ExampleItem) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier
@@ -42,9 +76,10 @@ fun ExampleRow(
 fun ExampleScreen(
     items: List<ExampleItem>,
     onAddItem: (ExampleItem) -> Unit,
-    onRemoveItem: (ExampleItem) -> Unit
+    onRemoveItem: (ExampleItem) -> Unit,
 ) {
     Column {
+        ExampleItemInput(onAddItem)
         LazyColumn(
             modifier = Modifier.weight(1F),
             contentPadding = PaddingValues(top = 8.dp)
@@ -66,6 +101,12 @@ fun ExampleScreen(
             Text(text = "Add random item")
         }
     }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Composable
+fun PreviewExampleItemInput() {
+    ExampleItemInput({ })
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
