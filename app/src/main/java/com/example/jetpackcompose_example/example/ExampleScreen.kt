@@ -1,5 +1,6 @@
 package com.example.jetpackcompose_example.example
 
+import android.widget.Space
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -25,29 +26,45 @@ private const val TAG = "VLAD"
 fun ExampleItemInput(
     onItemComplete: (ExampleItem) -> Unit,
 ) {
+    val text = remember { mutableStateOf("") }
+    val (icon, setIcon) = remember { mutableStateOf(ExampleIcon.Default) }
+    val iconVisible = text.value.isNotBlank()
+    val submit = {
+        onItemComplete(ExampleItem(text.value, icon))
+        setIcon(ExampleIcon.Default)
+        text.value = ""
+    }
+
     Column {
         Row(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
                 .padding(top = 16.dp)
         ) {
-            val text = remember { mutableStateOf("") }
             ExampleInputTextField(
                 text = text.value,
                 onTextChange = { text.value = it },
                 modifier = Modifier
                     .weight(1F)
-                    .padding(end = 8.dp)
+                    .padding(end = 8.dp),
+                onImeAction = submit
             )
             ExampleInputButton(
                 text = "Add",
-                onClick = {
-                    onItemComplete(ExampleItem(text.value))
-                    text.value = ""
-                },
+                onClick = submit,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
             )
+        }
+        if (iconVisible) {
+            AnimatedIconRow(
+                icon = icon,
+                onIconChange = { setIcon(it) },
+                modifier = Modifier
+                    .padding(top = 8.dp)
+            )
+        } else {
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
